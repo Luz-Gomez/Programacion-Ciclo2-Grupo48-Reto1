@@ -65,10 +65,10 @@ public class EvaluarCreditoVehiculo {
         return opcion;
     }
 
-    // Calse main para probar programa
+    // Clase main para probar programa
     public static void main(String[] args) {
-        Double valor = 35000000.0D;
-        Integer tiempo = 12;
+        Double valor = 53250000.0D;
+        Integer tiempo = 36;
         EvaluarCreditoVehiculo evaluar = new EvaluarCreditoVehiculo();
         String eleccion = evaluar.compararOpcion(valor, tiempo);
         System.out.println(eleccion);
