@@ -1,12 +1,10 @@
 package co.edu.utp.misiontic2022.c2;
 
-// EvaluarCreditoVehiculo
-
-public class EvaluarCreditoVehiculo {
-
+public  class EvaluacionCredito {
     private Double interesSimple = 0.0D;
     private Double interesCompuesto = 0.0D;
-    private Double interes;
+    private final Double INTERESSIMPLE = 2.5/100;
+    private final Double INTERESCOMPUESTO = 2.2/100;
 
     private Double valor;
     private Integer tiempo;
@@ -15,16 +13,8 @@ public class EvaluarCreditoVehiculo {
         return valor;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
     public Integer getTiempo() {
         return tiempo;
-    }
-
-    public void setTiempo(Integer tiempo) {
-        this.tiempo = tiempo;
     }
 
     // Calcula intereses a pagar en un crédito de interés simple.
@@ -32,8 +22,7 @@ public class EvaluarCreditoVehiculo {
     private Double calcularInteresSimple(Double valor, Integer tiempo, Double interes) {
         this.valor = valor;
         this.tiempo = tiempo;
-        this.interes = interes;
-        interesSimple = valor * interes * tiempo;
+        this.interesSimple = this.valor * interes * this.tiempo;
         return interesSimple;
     }
 
@@ -42,8 +31,7 @@ public class EvaluarCreditoVehiculo {
     private Double calcularInteresCompuesto(Double valor, Integer tiempo, Double interes) {
         this.valor = valor;
         this.tiempo = tiempo;
-        this.interes = interes;
-        interesCompuesto = valor * (Math.pow((1 + interes), tiempo) - 1);
+        this.interesCompuesto = this.valor * (Math.pow((1 + interes), this.tiempo) - 1);
         return interesCompuesto;
     }
 
@@ -53,10 +41,8 @@ public class EvaluarCreditoVehiculo {
         String opcion;
         this.valor = valor;
         this.tiempo = tiempo;
-        this.interes = 2.5D/100;
-        this.calcularInteresSimple(valor, tiempo, interes);
-        this.interes = 2.2D/100;
-        this.calcularInteresCompuesto(valor, tiempo, interes);
+        this.calcularInteresSimple(this.valor, this.tiempo, INTERESSIMPLE);
+        this.calcularInteresCompuesto(this.valor, this.tiempo, INTERESCOMPUESTO);
         Double diferencia = interesSimple - interesCompuesto;
         if (diferencia > 0) {
             opcion = "credito estandar";
@@ -64,14 +50,5 @@ public class EvaluarCreditoVehiculo {
             opcion = "credito especial";
         }
         return opcion;
-    }
-
-    // Clase main para probar programa
-    public static void main(String[] args) {
-        Double valor = 53250000.0D;
-        Integer tiempo = 36;
-        EvaluarCreditoVehiculo evaluar = new EvaluarCreditoVehiculo();
-        String eleccion = evaluar.compararOpcion(valor, tiempo);
-        System.out.println(eleccion);
     }
 }
